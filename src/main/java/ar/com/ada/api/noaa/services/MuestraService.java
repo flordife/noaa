@@ -18,6 +18,21 @@ public class MuestraService {
     public void crear(Muestra muestra) {
         repo.save(muestra);
     }
+
+    public Muestra buscarPorBoyaId(Integer idBoya) {
+        return repo.findByBoyaId();
+    }
+
+    public void bajaMuestraPorId(Integer id) {
+        Muestra muestra = this.buscarMuestraPorId(id);
+
+        muestra.setColorLuz("AZUL");
+        repo.save(muestra);
+    }
+
+    private Muestra buscarMuestraPorId(Integer id) {
+        return repo.findByMuestraId(id);
+    }
     
     
 }

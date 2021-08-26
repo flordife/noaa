@@ -100,6 +100,9 @@ public class Muestra {
         this.alturaNivelDelMar = alturaNivelDelMar;
     }
 
+    public void setColorLuz(String colorBoya) {
+    }
+
 
     
 }

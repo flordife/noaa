@@ -1,5 +1,6 @@
 package ar.com.ada.api.noaa.controllers;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,12 @@ import ar.com.ada.api.noaa.models.response.GenericResponse;
 import ar.com.ada.api.noaa.models.response.MuestraResponse;
 import ar.com.ada.api.noaa.services.BoyaService;
 import ar.com.ada.api.noaa.services.MuestraService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class MuestraController {
@@ -39,5 +46,23 @@ public class MuestraController {
         
         return ResponseEntity.ok(respuesta);
     }
+
+    @GetMapping("/muestras/boyas{idBoya}")
+    public ResponseEntity<Muestra> traerMuestrasPorIdDeBoya(@PathVariable Integer idBoya){
+        Muestra muestra = service.buscarPorBoyaId(idBoya);
+
+        return ResponseEntity.ok(muestra);
+    }
+
+    @DeleteMapping("/muestras/{id}")
+    public ResponseEntity<GenericResponse> bajaMuestra(@PathVariable Integer id){
+        service.bajaMuestraPorId(id);
+
+        GenericResponse respuesta = new GenericResponse();
+        respuesta.isOk = true;
+        respuesta.message = "La muestra ha sido resetada";
+
+        return ResponseEntity.ok(respuesta);
+    }    
     
 }
