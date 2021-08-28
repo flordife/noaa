@@ -1,6 +1,6 @@
 package ar.com.ada.api.noaa.services;
 
-
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,18 @@ public class MuestraService {
         repo.save(muestra);
     }
 
-    public Muestra buscarPorBoyaId(Integer idBoya) {
-        return repo.findById(idBoya);
+    public Muestra crear(Date horario, double latitud, Integer boyaId, double alturaNivelDelMar, double longitud,
+            String matricula) {
+        Muestra muestra = new Muestra();
+        Boya boya = boyaService.buscarPorId(boyaId);
+        muestra.setAlturaNivelDelMar(alturaNivelDelMar);
+        muestra.setBoya(boyaService.calcularColor(boya, alturaNivelDelMar));
+        muestra.setHorarioMuestra(horario);
+        muestra.setLatitud(latitud);
+        muestra.setLongitud(longitud);
+        boya.agregarMuestra(muestra);
+
+        return repo.save(muestra);
     }
 
     public void bajaMuestraPorId(Integer id) {
@@ -43,6 +53,5 @@ public class MuestraService {
         Boya boya = boyaService.buscarPorId(idBoya);
         return boya.getMuestras();
     }
-    
-    
+
 }
