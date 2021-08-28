@@ -50,4 +50,11 @@ public class MuestraController {
         return ResponseEntity.ok(respuesta);
     }
 
+    /*@GetMapping("/muestras/colores/{color}")
+    public ResponseEntity<List<Muestra>> traerMuestrasPorColorBoya(@PathVariable String color){
+        List<Muestra> muestras = service.traerMuestrasPorColorDeBoya(color);
+
+        return ResponseEntity.ok(muestras);
+    }*/
+
 }

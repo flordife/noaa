@@ -51,4 +51,9 @@ public class MuestraService {
         return boya.getMuestras();
     }
 
+    /*public List<Muestra> traerMuestrasPorColorDeBoya(String colorBoya){
+        Boya boya = boyaService.buscarPorColorDeBoya(colorBoya);
+        return boya.getMuestrasPorColor();
+    }*/
+
 }

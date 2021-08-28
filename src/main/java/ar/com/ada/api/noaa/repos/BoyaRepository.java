@@ -9,5 +9,7 @@ import ar.com.ada.api.noaa.entities.Boya;
 public interface BoyaRepository extends JpaRepository<Boya, Integer> {
 
     Boya findByBoyaId(Integer id);
+
+    /*Boya findByColorLuz(String colorBoya);*/
     
-}
+}   
