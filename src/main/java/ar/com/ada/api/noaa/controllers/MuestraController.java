@@ -34,9 +34,8 @@ public class MuestraController {
 
     @GetMapping("/muestras/boyas/{idBoya}")
     public ResponseEntity<List<Muestra>> traerMuestrasPorIdDeBoya(@PathVariable Integer idBoya) {
-        List<Muestra> muestras = service.traerMuestrasPorBoya(idBoya);
 
-        return ResponseEntity.ok(muestras);
+        return ResponseEntity.ok(service.traerMuestrasPorBoya(idBoya));
     }
 
     @DeleteMapping("/muestras/{id}")
