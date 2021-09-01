@@ -45,8 +45,6 @@ public class BoyaService {
         return boya;
     }
 
-    /*public Boya buscarPorColorDeBoya(String color){
-        return repo.findByColorLuz(color);
-    }*/
+   
 
 }

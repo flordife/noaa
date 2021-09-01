@@ -10,6 +10,6 @@ public interface BoyaRepository extends JpaRepository<Boya, Integer> {
 
     Boya findByBoyaId(Integer id);
 
-    /*Boya findByColorLuz(String colorBoya);*/
+    Boya findByColorLuz(String colorBoya);
     
 }   

@@ -1,11 +1,13 @@
 package ar.com.ada.api.noaa.services;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ar.com.ada.api.noaa.entities.Boya;
 import ar.com.ada.api.noaa.entities.Muestra;
+import ar.com.ada.api.noaa.models.response.MuestraPorColor;
 import ar.com.ada.api.noaa.repos.MuestraRepository;
 
 @Service
@@ -36,14 +38,11 @@ public class MuestraService {
     }
 
     public void bajaMuestraPorId(Integer id) {
-        Muestra muestra = this.buscarMuestraPorId(id);
-
-        muestra.setColorLuz("AZUL");
+        Muestra muestra = repo.findByMuestraId(id);
+        Boya boya = muestra.getBoya();
+        boya.setColorLuz("AZUL");
+        boyaService.guardar(boya);
         repo.save(muestra);
-    }
-
-    private Muestra buscarMuestraPorId(Integer id) {
-        return repo.findByMuestraId(id);
     }
 
     public List<Muestra> traerMuestrasPorBoya(Integer idBoya) {
@@ -51,9 +50,25 @@ public class MuestraService {
         return boya.getMuestras();
     }
 
-    /*public List<Muestra> traerMuestrasPorColorDeBoya(String colorBoya){
-        Boya boya = boyaService.buscarPorColorDeBoya(colorBoya);
-        return boya.getMuestrasPorColor();
-    }*/
+    public List<MuestraPorColor> traerMuestrasPorColorDeBoya(String colorBoya){
+        List<MuestraPorColor> muestrasPorColor = new ArrayList<>();
+        MuestraPorColor muestraPorColor= new MuestraPorColor();
+        
+        for (Muestra muestra : repo.findAll()) {            
+            
+            if (((muestra.getBoya().getColorLuz())).equals(colorBoya)){ 
+                muestraPorColor.boyaId = muestra.getBoya().getBoyaId();
+                muestraPorColor.horario=muestra.getHorarioMuestra();
+                muestraPorColor.alturaNivelDelMar=muestra.getAlturaNivelDelMar();                            
+                
+                muestrasPorColor.add(muestraPorColor);
+                
+            }            
 
+        }
+        return muestrasPorColor;
+        
+
+    
+    }
 }

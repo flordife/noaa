@@ -82,20 +82,6 @@ public class Boya {
         this.muestras.add(muestra);
     }
 
-    /*
-     * public enum ColorBoyaEnum{
-     * 
-     * ROJO(1), AMARILLO(2), VERDE(3), AZUL(4);
-     * 
-     * private final int value;
-     * 
-     * private ColorBoyaEnum(int value) { this.value = value; }
-     * 
-     * public int getValue() { return value; }
-     * 
-     * public static ColorBoyaEnum parse(int id) { ColorBoyaEnum status = null; //
-     * Default for (ColorBoyaEnum item : ColorBoyaEnum.values()) { if
-     * (item.getValue() == id) { status = item; break; } } return status; } }
-     */
+    
 
 }
