@@ -45,6 +45,10 @@ public class MuestraService {
         repo.save(muestra);
     }
 
+    public List<Muestra> traerMuestras(){
+        return repo.findAll();
+    }
+
     public List<Muestra> traerMuestrasPorBoya(Integer idBoya) {
         Boya boya = boyaService.buscarPorId(idBoya);
         return boya.getMuestras();
@@ -54,7 +58,7 @@ public class MuestraService {
         List<MuestraPorColor> muestrasPorColor = new ArrayList<>();
         MuestraPorColor muestraPorColor= new MuestraPorColor();
         
-        for (Muestra muestra : repo.findAll()) {            
+        for (Muestra muestra : this.traerMuestras()) {            
             
             if (((muestra.getBoya().getColorLuz())).equals(colorBoya)){ 
                 muestraPorColor.boyaId = muestra.getBoya().getBoyaId();

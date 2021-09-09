@@ -28,15 +28,6 @@ public class Boya {
     @JsonIgnore
     private List<Muestra> muestras = new ArrayList<>();
 
-    /*private List<Muestra> muestrasPorColor = new ArrayList<>();
-
-    public List<Muestra> getMuestrasPorColor() {
-        return muestrasPorColor;
-    }
-
-    public void setMuestrasPorColor(List<Muestra> muestrasPorColor) {
-        this.muestrasPorColor = muestrasPorColor;
-    }*/
 
     public Integer getBoyaId() {
         return boyaId;
